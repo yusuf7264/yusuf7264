@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="1100px" height="500px" font-size="16px">
+<svg xmlns="http://www.w3.org/2000/svg" font-family="ConsolasFallback,Consolas,monospace" width="1100px" height="520px" font-size="16px">
 <style>
 @font-face {
 src: local('Consolas'), local('Consolas Bold');
@@ -15,30 +15,32 @@ size-adjust: 109%;
 .cc {fill: #c2cfde;}
 text, tspan {white-space: pre;}
 </style>
-<rect width="1100px" height="500px" fill="#f6f8fa" rx="15"/>
+<rect width="1100px" height="520px" fill="#f6f8fa" rx="15"/>
 <text x="15" y="30" fill="#24292f" class="ascii">
-<tspan x="15" y="30">   __   __                 __</tspan>
-<tspan x="15" y="50">   \ \ / /   _ ___ _   _  / _|</tspan>
-<tspan x="15" y="70">    \ V / | | / __| | | || |_</tspan>
-<tspan x="15" y="90">     | || |_| \__ \ |_| ||  _|</tspan>
-<tspan x="15" y="110">     |_| \__,_|___/\__,_||_|</tspan>
-<tspan x="15" y="130"></tspan>
-<tspan x="15" y="150">    _   _</tspan>
-<tspan x="15" y="170">   | | | | __ _ ___ ___  __ _ _ __</tspan>
-<tspan x="15" y="190">   | |_| |/ _` / __/ __|/ _` | &#x27;_ \</tspan>
-<tspan x="15" y="210">   |  _  | (_| \__ \__ \ (_| | | | |</tspan>
-<tspan x="15" y="230">   |_| |_|\__,_|___/___/\__,_|_| |_|</tspan>
-<tspan x="15" y="250"></tspan>
-<tspan x="15" y="270">   +------------------------------+</tspan>
-<tspan x="15" y="290">   |                              |</tspan>
-<tspan x="15" y="310">   |  $ whoami                    |</tspan>
-<tspan x="15" y="330">   |  &gt; software engineer         |</tspan>
-<tspan x="15" y="350">   |  &gt; rise / utdrise.com        |</tspan>
-<tspan x="15" y="370">   |                              |</tspan>
-<tspan x="15" y="390">   |  $ status                    |</tspan>
-<tspan x="15" y="410">   |  &gt; open to internships       |</tspan>
-<tspan x="15" y="430">   |                              |</tspan>
-<tspan x="15" y="450">   +------------------------------+</tspan>
+<tspan x="15" y="30">          #+######.#+.      . ..</tspan>
+<tspan x="15" y="50">       -#@@@@@@@@@@@@@+##. .   .</tspan>
+<tspan x="15" y="70">      +@@@@@@@@@@@@@@@@@@@.    .</tspan>
+<tspan x="15" y="90">     #@@@@@@@@@@@@@@@@@@@@@-..</tspan>
+<tspan x="15" y="110">   .@@@@@#+++--+#####@@@@@@@@.</tspan>
+<tspan x="15" y="130">   @@@#-..        ....---#@@@@.</tspan>
+<tspan x="15" y="150">  -@@+ .....       ....----@@@+.</tspan>
+<tspan x="15" y="170"> .@@@..-..............-----+@@@.</tspan>
+<tspan x="15" y="190">  @@#.-..           ....--++@@@-</tspan>
+<tspan x="15" y="210">  -@+....     ...  .  .-.--+@@@</tspan>
+<tspan x="15" y="230">   @+.-##@@@###+++#@@@@@@@++@@-.</tspan>
+<tspan x="15" y="250">@@@@++@####@@@@####@@@#+###+@@@@</tspan>
+<tspan x="15" y="270">..+#-+@@+#@+#@@- -####@++@#+@--#</tspan>
+<tspan x="15" y="290">  ---..-####++-   -++#@##+-++</tspan>
+<tspan x="15" y="310"> .-.--  .--. ..   .--.----+#-+.</tspan>
+<tspan x="15" y="330">.-- -+-..   -.      --..-+##---.</tspan>
+<tspan x="15" y="350">.--  ++-..--..-...-------+@-..--</tspan>
+<tspan x="15" y="370">.-..+#++++-. +@@@@@#--.++##....-</tspan>
+<tspan x="15" y="390">---#@@@+++#@#+++#######+##..-#..</tspan>
+<tspan x="15" y="410">###+-. ##+##+-. ...-+###+  .-+##</tspan>
+<tspan x="15" y="430">.    -#-######+---+##++###+.</tspan>
+<tspan x="15" y="450">  .-+#  #@@#+##@@@@####@ .+##+-</tspan>
+<tspan x="15" y="470"> ---.  @+#@@@@@@@@@@@@##  ..-+#+</tspan>
+<tspan x="15" y="490">--..   +#+#@@@@@@@@@##@  .  .  .</tspan>
 </text>
 <text x="390" y="30" fill="#24292f">
 <tspan x="390" y="30"><tspan class="value">yusuf@hassan</tspan> -—————————————————————————————————————————————————————-—-</tspan>

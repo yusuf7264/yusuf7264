@@ -47,32 +47,36 @@ RIGHT_MARGIN = 33
 SVG_W = round(PANEL_X + ROW_WIDTH * CHAR_W + RIGHT_MARGIN)
 
 # --- ASCII art panel -------------------------------------------------------
-# Placeholder monogram. Swap for a photo-derived portrait if desired.
+# Portrait rendered from a photo by photo_to_ascii.py. One block serves both
+# themes: dense glyphs sit on the subject, reading as ink on light and as a
+# bright drawing on dark. See that script for why it is not inverted per theme.
 # Must stay <= ART_MAX_COLS wide or it will collide with the info panel at PANEL_X.
-ASCII_ART = r"""
-   __   __                 __
-   \ \ / /   _ ___ _   _  / _|
-    \ V / | | / __| | | || |_
-     | || |_| \__ \ |_| ||  _|
-     |_| \__,_|___/\__,_||_|
-
-    _   _
-   | | | | __ _ ___ ___  __ _ _ __
-   | |_| |/ _` / __/ __|/ _` | '_ \
-   |  _  | (_| \__ \__ \ (_| | | | |
-   |_| |_|\__,_|___/___/\__,_|_| |_|
-
-   +------------------------------+
-   |                              |
-   |  $ whoami                    |
-   |  > software engineer         |
-   |  > rise / utdrise.com        |
-   |                              |
-   |  $ status                    |
-   |  > open to internships       |
-   |                              |
-   +------------------------------+
-""".strip("\n").split("\n")
+ASCII_ART = [
+    '          #+######.#+.      . ..',
+    '       -#@@@@@@@@@@@@@+##. .   .',
+    '      +@@@@@@@@@@@@@@@@@@@.    .',
+    '     #@@@@@@@@@@@@@@@@@@@@@-..',
+    '   .@@@@@#+++--+#####@@@@@@@@.',
+    '   @@@#-..        ....---#@@@@.',
+    '  -@@+ .....       ....----@@@+.',
+    ' .@@@..-..............-----+@@@.',
+    '  @@#.-..           ....--++@@@-',
+    '  -@+....     ...  .  .-.--+@@@',
+    '   @+.-##@@@###+++#@@@@@@@++@@-.',
+    '@@@@++@####@@@@####@@@#+###+@@@@',
+    '..+#-+@@+#@+#@@- -####@++@#+@--#',
+    '  ---..-####++-   -++#@##+-++',
+    ' .-.--  .--. ..   .--.----+#-+.',
+    '.-- -+-..   -.      --..-+##---.',
+    '.--  ++-..--..-...-------+@-..--',
+    '.-..+#++++-. +@@@@@#--.++##....-',
+    '---#@@@+++#@#+++#######+##..-#..',
+    '###+-. ##+##+-. ...-+###+  .-+##',
+    '.    -#-######+---+##++###+.',
+    '  .-+#  #@@#+##@@@@####@ .+##+-',
+    ' ---.  @+#@@@@@@@@@@@@##  ..-+#+',
+    '--..   +#+#@@@@@@@@@##@  .  .  .',
+]
 
 
 def row(key_parts, value, width=ROW_WIDTH, value_id=None):
@@ -222,5 +226,6 @@ if __name__ == "__main__":
         with open(path, "w") as f:
             f.write(build(theme))
         print("wrote", path)
-    print(f"\nASCII art: {len(ASCII_ART)} rows, max width {max(len(l) for l in ASCII_ART)} chars")
+    rows = len(ASCII_ART)
+    print(f"\nASCII art: {rows} rows, max width {widest} chars")
     print(f"Info panel: {len(FIELDS)} rows")
