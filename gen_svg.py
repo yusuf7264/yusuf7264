@@ -9,7 +9,32 @@ Rows are padded so every line in the info panel is exactly ROW_WIDTH chars,
 which is what makes the dot-leaders line up. Dynamic fields (the ones today.py
 rewrites at build time) get an id + a matching *_dots id.
 """
+import calendar
+import datetime
 import html
+
+# Must match BIRTH_* in today.py. Used only for the placeholder Uptime value so
+# the SVGs read correctly before the first Action run; today.py rewrites it after.
+BIRTH = (2004, 10, 28)
+
+
+def age_string(birth=BIRTH, today=None):
+    """Same output as today.py's daily_readme(), without the dateutil dependency."""
+    today = today or datetime.date.today()
+    years = today.year - birth[0]
+    months = today.month - birth[1]
+    days = today.day - birth[2]
+    if days < 0:
+        months -= 1
+        pm = today.month - 1 or 12
+        py = today.year if today.month > 1 else today.year - 1
+        days += calendar.monthrange(py, pm)[1]
+    if months < 0:
+        years -= 1
+        months += 12
+    plural = lambda n: "" if n == 1 else "s"
+    return (f"{years} year{plural(years)}, {months} month{plural(months)}, "
+            f"{days} day{plural(days)}")
 
 ROW_WIDTH = 70          # widened from upstream's 60 to fit the Languages.Programming row
 PANEL_X = 390
@@ -81,8 +106,7 @@ FIELDS = [
     ("raw", '<tspan class="value">yusuf@hassan</tspan> '
             + "-" + "—" * (ROW_WIDTH - len("yusuf@hassan ") - 4) + "-—-"),
     ("row", (["OS"], "macOS, Windows 11", None)),
-    ("row", (["Uptime"], "21 years, 0 months, 0 days", "age_data")),
-    ("row", (["Host"], "Rise (utdrise.com)", None)),
+    ("row", (["Uptime"], age_string(), "age_data")),
     ("row", (["Kernel"], "Software Engineer", None)),
     ("row", (["Status"], "Open to internships", None)),
     ("row", (["Education"], "UIC - B.S. Computer Science", None)),
