@@ -15,8 +15,7 @@ USER_NAME = os.environ['USER_NAME'] # 'yusuf7264'
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 # Birth date, used to render the 'Uptime' field on the SVGs.
-# TODO: set these to your real birth date before the first run.
-BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY = 2004, 1, 1
+BIRTH_YEAR, BIRTH_MONTH, BIRTH_DAY = 2004, 10, 28
 
 
 def daily_readme(birthday):

@@ -40,7 +40,7 @@ ASCII_ART = r"""
    +------------------------------+
    |                              |
    |  $ whoami                    |
-   |  > lead software engineer    |
+   |  > software engineer         |
    |  > rise / utdrise.com        |
    |                              |
    |  $ status                    |
@@ -80,22 +80,25 @@ def header(title, width=ROW_WIDTH):
 FIELDS = [
     ("raw", '<tspan class="value">yusuf@hassan</tspan> '
             + "-" + "—" * (ROW_WIDTH - len("yusuf@hassan ") - 4) + "-—-"),
-    ("row", (["OS"], "macOS, Ubuntu, Windows 11", None)),
+    ("row", (["OS"], "macOS, Windows 11", None)),
     ("row", (["Uptime"], "21 years, 0 months, 0 days", "age_data")),
     ("row", (["Host"], "Rise (utdrise.com)", None)),
-    ("row", (["Kernel"], "Lead Software Engineer", None)),
+    ("row", (["Kernel"], "Software Engineer", None)),
     ("row", (["Status"], "Open to internships", None)),
+    ("row", (["Education"], "UIC - B.S. Computer Science", None)),
     ("row", (["IDE"], "VS Code, Cursor, Claude Code", None)),
     ("blank", None),
     ("row", (["Languages", "Programming"], "Python, JavaScript, TypeScript, C/C++, SQL", None)),
     ("row", (["Languages", "Computer"], "HTML5, CSS3, JSON", None)),
-    ("row", (["Languages", "Real"], "English, Arabic", None)),
+    ("row", (["Languages", "Real"], "English, Somali", None)),
     ("blank", None),
-    ("row", (["Projects"], "Rise", None)),
+    ("row", (["Frameworks"], "React, Next.js, FastAPI, Flask, Node.js", None)),
+    ("row", (["Tools"], "Git, GitHub Actions, Vercel, MySQL, MongoDB", None)),
+    ("row", (["Projects"], "AskClip, Pytest AI Generator", None)),
     ("header", "Contact"),
     ("row", (["Email", "Personal"], "yusufha.2004@gmail.com", None)),
-    ("row", (["LinkedIn"], "yusuf-ha", None)),
-    ("row", (["GitHub"], "yusuf7264", None)),
+    ("row", (["LinkedIn"], "linkedin.com/in/yusuf-ha", None)),
+    ("row", (["GitHub"], "github.com/yusuf7264", None)),
     ("header", "GitHub Stats"),
     ("stats1", None),
     ("stats2", None),
