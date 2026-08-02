@@ -49,9 +49,10 @@ SVG_W = round(PANEL_X + ROW_WIDTH * CHAR_W + RIGHT_MARGIN)
 # The art panel gets its own type size. Braille-block art needs line spacing close
 # to the font size to read as solid rather than striped, and a smaller size keeps
 # a 39-column block clear of the info panel.
-ART_FONT_SIZE = 14
-ART_LINE_H = 15
-ART_TOP = 26
+ART_FONT_SIZE = 20
+ART_LINE_H = 21
+PANEL_TOP = 30
+PANEL_LINE_H = 20
 # Braille comes from a fallback font with a WIDER advance than the Latin
 # monospace (0.604 em). Measured empirically: at size 15 a 39-column block
 # overran x=390 and struck the info panel, so budget ~0.65 em here.
@@ -63,40 +64,20 @@ ART_CHAR_W = ART_FONT_SIZE * 0.65
 # fallback font; ART_FONT_SIZE/ART_LINE_H are tuned so that still lines up.
 # Must stay <= ART_MAX_COLS wide or it will collide with the info panel at PANEL_X.
 ASCII_ART = [
-    '⠀⠀⠀⠀⠀⠀⠀⠀⡀⣠⣴⣶⣶⣿⣿⣷⣶⣶⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⢶⣾⣿⡿⠿⠉⠉⠉⠉⠹⠿⣿⣿⣿⣆⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⢠⣴⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⣙⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⣼⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠙⣿⣿⡤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⢰⣿⡇⠀⣀⣀⠀⠀⠀⠀⣰⣦⣤⣠⣤⣤⣤⣄⡘⣿⣷⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⢸⣿⡇⠘⣿⣿⠇⠀⠀⣴⡿⢁⣉⣭⣥⣤⣼⣿⠇⢹⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⢺⣿⣧⠀⠀⠀⢀⣴⡿⢏⣴⣿⠟⢉⣩⣽⠟⠁⠀⠀⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠈⣿⣿⡆⠀⢀⣾⣏⣴⡿⣛⣥⣶⠿⠋⠁⠀⠀⠀⠀⢸⣿⣿⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠘⣿⣷⠀⣾⣿⣿⡿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⢸⣿⣶⣄⡙⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⢸⣿⡍⠛⠿⢿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⢀⣾⣿⠀⠀⠀⠀⢿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣮⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⣾⣿⣿⠀⠀⠀⠀⠈⢿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣇⠄⠀⠀⠀⠀⠀⠀⠀',
-    '⢐⣿⣿⣿⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀',
-    '⢸⣿⠀⣿⣷⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣷⠀⠀⠀⠀⠀⠀⠀',
-    '⢸⣿⠀⠈⠙⢿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡀⠀⠀⠀⠀⠀⠀',
-    '⢸⣿⡄⠀⠀⠀⢻⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣷⠀⠀⠀⠀⠀⠀',
-    '⠹⣿⣧⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡗⡀⠀⠀⠀⠀',
-    '⠀⢻⣿⣆⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡧⡇⠀⠀⠀⠀',
-    '⠀⢸⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣇⠃⠀⠀⠀⠀',
-    '⠀⠘⣿⣧⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⡟⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠙⢿⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠋⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠘⠹⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣧⣶⣧⣄⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠈⠈⠻⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣾⣿⣿⡿⡟⣿⣿⣶⣀⠀⠀⡀',
-    '⠀⠀⠀⠀⠀⠀⠈⠈⢟⢿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣿⣟⣟⡻⢏⣳⣽⣷⢎⡽⢻⣿⣷⣿⡷',
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠈⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣿⣿⣿⠿⣿⣮⡷⣋⢾⡻⣝⣮⣼⣿⣿⡿⠏⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣯⣿⣿⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠉⠻⠿⡿⠾⠿⠿⠿⠟⠋⠁⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⣿⣇⣿⣿⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣏⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣄⣀⣀⠀⠀⠀⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⠁⠋⠟⠛⠿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡄⠀',
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠈⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡗⠇',
-    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠿⠿⠿⠻⠛⠋⠁⠀⠀',
+    '⠀⠀⠀⣸⠋⠛⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠞⠋⢻⡀⠀⠀⠀',
+    '⠀⠀⠀⡟⠂⠀⠀⠈⠳⠶⠖⠒⠒⠒⠒⠶⠋⠁⠀⠀⠘⡇⠀⠀⠀',
+    '⠀⠀⢰⡇⠀⢀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡄⠀⠀⢷⠀⠀⠀',
+    '⠀⠀⢸⡇⠀⠈⠳⢦⡀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠀⠀⠀⣾⠀⠀⠀',
+    '⠀⠀⣼⠗⠀⣴⣾⣟⣿⠓⠀⠀⠀⠀⠐⣿⣿⣳⣦⠀⠀⢹⡄⠀⠀',
+    '⠀⢸⡏⠀⠀⠙⠛⠟⠋⠀⠀⠀⠀⠀⠀⠈⠛⠛⠃⠀⠀⠈⢿⡀⠀',
+    '⠀⡿⠁⠀⠀⠀⠀⠀⢧⣀⣀⣠⣴⣤⣀⣀⣿⠀⠀⠀⠀⠀⠸⡇⠀',
+    '⠀⣧⠀⠀⠀⠀⠀⠀⠀⢻⣿⣿⠿⣿⣿⠏⠀⠀⠀⠀⠀⠀⢠⡇⠀',
+    '⠀⠘⣇⠀⠀⠀⠀⠀⠀⠀⣹⡛⠀⢸⡏⠀⠀⠀⠀⠀⠀⢀⡾⠅⠀',
+    '⠀⠀⢙⡷⠀⠀⠀⠀⠀⠋⠻⣿⣴⡾⠁⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀',
+    '⠀⠀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢷⠀⠀',
+    '⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣇⠀',
+    '⠀⣾⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢽⡀',
+    '⢀⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇',
 ]
 
 
@@ -181,7 +162,7 @@ THEMES = {
 
 def build(theme):
     lines = []
-    y = 30
+    y = PANEL_TOP
     for kind, payload in FIELDS:
         if kind == "blank":
             lines.append(f'<tspan x="{PANEL_X}" y="{y}" class="cc">. </tspan>')
@@ -197,8 +178,12 @@ def build(theme):
         y += 20
     panel_bottom = y
 
+    # Centre the art against the info panel; it is usually the shorter column.
+    art_h = len(ASCII_ART) * ART_LINE_H
+    art_top = PANEL_TOP + max(0, (panel_bottom - PANEL_TOP - art_h) // 2)
+
     art = []
-    ay = ART_TOP
+    ay = art_top
     for line in ASCII_ART:
         art.append(f'<tspan x="15" y="{ay}">{html.escape(line)}</tspan>')
         ay += ART_LINE_H
@@ -223,7 +208,7 @@ size-adjust: 109%;
 text, tspan {{white-space: pre;}}
 </style>
 <rect width="{SVG_W}px" height="{height}px" fill="{theme["bg"]}" rx="15"/>
-<text x="15" y="{ART_TOP}" fill="{theme["fg"]}" class="ascii" font-size="{ART_FONT_SIZE}px">
+<text x="15" y="{art_top}" fill="{theme["fg"]}" class="ascii" font-size="{ART_FONT_SIZE}px">
 {chr(10).join(art)}
 </text>
 <text x="{PANEL_X}" y="30" fill="{theme["fg"]}">
