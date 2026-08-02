@@ -46,36 +46,57 @@ CHAR_W = 9.667
 RIGHT_MARGIN = 33
 SVG_W = round(PANEL_X + ROW_WIDTH * CHAR_W + RIGHT_MARGIN)
 
+# The art panel gets its own type size. Braille-block art needs line spacing close
+# to the font size to read as solid rather than striped, and a smaller size keeps
+# a 39-column block clear of the info panel.
+ART_FONT_SIZE = 14
+ART_LINE_H = 15
+ART_TOP = 26
+# Braille comes from a fallback font with a WIDER advance than the Latin
+# monospace (0.604 em). Measured empirically: at size 15 a 39-column block
+# overran x=390 and struck the info panel, so budget ~0.65 em here.
+ART_CHAR_W = ART_FONT_SIZE * 0.65
+
 # --- ASCII art panel -------------------------------------------------------
-# Portrait rendered from a photo by photo_to_ascii.py. One block serves both
-# themes: dense glyphs sit on the subject, reading as ink on light and as a
-# bright drawing on dark. See that script for why it is not inverted per theme.
+# Braille-block art (U+2800-U+28FF), one block for both themes. Note that
+# Consolas has no Braille coverage, so these glyphs come from the viewer's
+# fallback font; ART_FONT_SIZE/ART_LINE_H are tuned so that still lines up.
 # Must stay <= ART_MAX_COLS wide or it will collide with the info panel at PANEL_X.
 ASCII_ART = [
-    '          #+######.#+.      . ..',
-    '       -#@@@@@@@@@@@@@+##. .   .',
-    '      +@@@@@@@@@@@@@@@@@@@.    .',
-    '     #@@@@@@@@@@@@@@@@@@@@@-..',
-    '   .@@@@@#+++--+#####@@@@@@@@.',
-    '   @@@#-..        ....---#@@@@.',
-    '  -@@+ .....       ....----@@@+.',
-    ' .@@@..-..............-----+@@@.',
-    '  @@#.-..           ....--++@@@-',
-    '  -@+....     ...  .  .-.--+@@@',
-    '   @+.-##@@@###+++#@@@@@@@++@@-.',
-    '@@@@++@####@@@@####@@@#+###+@@@@',
-    '..+#-+@@+#@+#@@- -####@++@#+@--#',
-    '  ---..-####++-   -++#@##+-++',
-    ' .-.--  .--. ..   .--.----+#-+.',
-    '.-- -+-..   -.      --..-+##---.',
-    '.--  ++-..--..-...-------+@-..--',
-    '.-..+#++++-. +@@@@@#--.++##....-',
-    '---#@@@+++#@#+++#######+##..-#..',
-    '###+-. ##+##+-. ...-+###+  .-+##',
-    '.    -#-######+---+##++###+.',
-    '  .-+#  #@@#+##@@@@####@ .+##+-',
-    ' ---.  @+#@@@@@@@@@@@@##  ..-+#+',
-    '--..   +#+#@@@@@@@@@##@  .  .  .',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⡀⣠⣴⣶⣶⣿⣿⣷⣶⣶⣤⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⢶⣾⣿⡿⠿⠉⠉⠉⠉⠹⠿⣿⣿⣿⣆⠆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⢠⣴⣿⠟⠋⠀⠀⠀⠀⠀⠀⠀⠀⠈⣙⣿⣿⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⣼⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⠿⠿⠙⣿⣿⡤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⢰⣿⡇⠀⣀⣀⠀⠀⠀⠀⣰⣦⣤⣠⣤⣤⣤⣄⡘⣿⣷⡁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⢸⣿⡇⠘⣿⣿⠇⠀⠀⣴⡿⢁⣉⣭⣥⣤⣼⣿⠇⢹⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⢺⣿⣧⠀⠀⠀⢀⣴⡿⢏⣴⣿⠟⢉⣩⣽⠟⠁⠀⠀⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠈⣿⣿⡆⠀⢀⣾⣏⣴⡿⣛⣥⣶⠿⠋⠁⠀⠀⠀⠀⢸⣿⣿⣠⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠘⣿⣷⠀⣾⣿⣿⡿⠿⠛⠋⠁⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⢸⣿⣶⣄⡙⣿⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⢸⣿⡍⠛⠿⢿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⢀⣾⣿⠀⠀⠀⠀⢿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣿⣮⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⣾⣿⣿⠀⠀⠀⠀⠈⢿⡗⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⣿⣇⠄⠀⠀⠀⠀⠀⠀⠀',
+    '⢐⣿⣿⣿⠀⠀⠀⠀⠀⠈⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀',
+    '⢸⣿⠀⣿⣷⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣷⠀⠀⠀⠀⠀⠀⠀',
+    '⢸⣿⠀⠈⠙⢿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⡀⠀⠀⠀⠀⠀⠀',
+    '⢸⣿⡄⠀⠀⠀⢻⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⣿⣷⠀⠀⠀⠀⠀⠀',
+    '⠹⣿⣧⠀⠀⠀⠀⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡗⡀⠀⠀⠀⠀',
+    '⠀⢻⣿⣆⠀⠀⠀⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⡧⡇⠀⠀⠀⠀',
+    '⠀⢸⣿⣿⣧⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣇⠃⠀⠀⠀⠀',
+    '⠀⠘⣿⣧⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⣿⡟⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠙⢿⣷⣤⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⠋⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠘⠹⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣧⣶⣧⣄⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠈⠈⠻⣿⣿⣦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣠⣤⣾⣿⣿⡿⡟⣿⣿⣶⣀⠀⠀⡀',
+    '⠀⠀⠀⠀⠀⠀⠈⠈⢟⢿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀⠀⢀⣸⣿⣟⣟⡻⢏⣳⣽⣷⢎⡽⢻⣿⣷⣿⡷',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠈⣿⣿⣿⣿⣿⣿⣶⣶⣶⣶⣿⣿⣿⠿⣿⣮⡷⣋⢾⡻⣝⣮⣼⣿⣿⡿⠏⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣯⣿⣿⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠉⠻⠿⡿⠾⠿⠿⠿⠟⠋⠁⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣸⣿⣇⣿⣿⣶⣶⣶⣶⣶⣶⣶⣶⣶⣶⣆⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⢠⣾⣿⣿⣿⣿⣏⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆⠀⠀⠀⠀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⣤⣄⣀⣀⠀⠀⠀⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠁⠋⠟⠛⠿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⡄⠀',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠈⠀⢹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡗⠇',
+    '⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠙⠻⠿⠿⠿⠿⠿⠿⠿⠻⠛⠋⠁⠀⠀',
 ]
 
 
@@ -177,10 +198,10 @@ def build(theme):
     panel_bottom = y
 
     art = []
-    ay = 30
+    ay = ART_TOP
     for line in ASCII_ART:
         art.append(f'<tspan x="15" y="{ay}">{html.escape(line)}</tspan>')
-        ay += 20
+        ay += ART_LINE_H
     art_bottom = ay
 
     height = max(panel_bottom, art_bottom) + 10
@@ -202,7 +223,7 @@ size-adjust: 109%;
 text, tspan {{white-space: pre;}}
 </style>
 <rect width="{SVG_W}px" height="{height}px" fill="{theme["bg"]}" rx="15"/>
-<text x="15" y="30" fill="{theme["fg"]}" class="ascii">
+<text x="15" y="{ART_TOP}" fill="{theme["fg"]}" class="ascii" font-size="{ART_FONT_SIZE}px">
 {chr(10).join(art)}
 </text>
 <text x="{PANEL_X}" y="30" fill="{theme["fg"]}">
@@ -212,7 +233,7 @@ text, tspan {{white-space: pre;}}
 '''
 
 
-ART_MAX_COLS = int((PANEL_X - 15) / CHAR_W)   # columns before the art hits the info panel
+ART_MAX_COLS = int((PANEL_X - 15) / ART_CHAR_W)   # columns before the art hits the info panel
 
 if __name__ == "__main__":
     import sys, os
