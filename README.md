@@ -62,9 +62,14 @@ figuring out where AI actually earns its place in a codebase.
 
 ---
 
-### Stats
+### Activity
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=yusuf7264&show_icons=true&hide_border=true&title_color=ffffff&text_color=9f9f9f&icon_color=ffffff&bg_color=0d1117" alt="GitHub stats" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=yusuf7264&layout=compact&hide_border=true&title_color=ffffff&text_color=9f9f9f&bg_color=0d1117" alt="Top languages" />
+  <img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=yusuf7264&bg_color=0d1117&color=ffffff&line=ffffff&point=ffffff&area=true&area_color=ffffff&hide_border=true&custom_title=Contribution%20Graph" alt="Contribution graph" />
+</p>
+
+---
+
+<p align="center">
+  <i>"Indeed, with hardship comes ease."</i>
 </p>
