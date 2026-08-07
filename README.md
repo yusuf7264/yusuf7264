@@ -21,7 +21,7 @@
 
 ---
 
-### About
+### About Me
 
 Computer Science student at the University of Illinois Chicago. I build web apps and
 developer tooling — most of my time goes to Python and TypeScript, and lately to
