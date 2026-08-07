@@ -29,7 +29,7 @@ figuring out where AI actually earns its place in a codebase.
 
 - Currently working on **AskClip**
 - Interested in backend systems, and applied AI
-- Speak English and Somali
+- Fluent in English and Somali
 
 ---
 
