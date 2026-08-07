@@ -26,8 +26,8 @@ Computer Science student at the University of Illinois Chicago. I build web apps
 developer tooling — most of my time goes to Python and TypeScript, and lately to
 figuring out where AI actually earns its place in a codebase.
 
-- Currently working on **AskClip** and a **Pytest AI test generator**
-- Interested in developer tooling, backend systems, and applied AI
+- Currently working on **AskClip**
+- Interested in backend systems, and applied AI
 - Speak English and Somali
 
 ---
